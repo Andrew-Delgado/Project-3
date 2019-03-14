@@ -1,4 +1,5 @@
 interface ExampleInterface
 {
 	string send_message(in string message);
+	void createQA(in string question, in string answer);
 };
