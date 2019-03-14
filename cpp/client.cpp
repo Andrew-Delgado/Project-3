@@ -2,6 +2,8 @@
 #include <iostream>
 #include <CORBA.h>
 #include <Naming.hh>
+#include <string>
+
 
 /** Name is defined in the server.cpp */
 #define SERVER_NAME		"MyServerName"
@@ -35,7 +37,7 @@ int main(int argc, char ** argv)
 				// (Reference to Name service root context.)
 				//------------------------------------------------------------------------
 				CosNaming::NamingContext_ptr nc = CosNaming::NamingContext::_narrow(ns_obj);
-				
+
 				//------------------------------------------------------------------------
 				// The "name text" put forth by CORBA server in name service.
 				// This same name ("MyServerName") is used by the CORBA server when
@@ -66,10 +68,20 @@ int main(int argc, char ** argv)
 		//------------------------------------------------------------------------
 		// Do stuff
 		//------------------------------------------------------------------------
+		//string qs = "";
+		//string ans = "";
+		//cout << "Enter QS" << endl;
+		//cin << qs;
+		//cout << "Enter ans" << endl;
+		//cin << ans
+		char const *qs = "howwwwwwwwww u";
+		char const *ans = "goot";
+
 		if (!CORBA::is_nil(service_server)) {
-			char * server = service_server->send_message("Message from C++ (omniORB) client");
-			cout << "response from Server: " << server << endl;
-			CORBA::string_free(server);
+			//char * server = service_server->send_message("Message from C++ (omniORB) client");
+			//cout << "response from Server: " << server << endl;
+			service_server->createQA(qs,ans);
+			//CORBA::string_free(server);
 		}
 
 		//------------------------------------------------------------------------
