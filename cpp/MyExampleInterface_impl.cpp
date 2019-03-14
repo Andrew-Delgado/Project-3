@@ -10,3 +10,8 @@ char * MyExampleInterface_impl::send_message(const char * message)
 	strncpy(server, "Message from C++ (omniORB) server", 42);
 	return server;
 }
+
+void MyExampleInterface_impl::createQA(const char * q, const char * a)
+{
+	cout << "Enter Question: " << endl;
+}
