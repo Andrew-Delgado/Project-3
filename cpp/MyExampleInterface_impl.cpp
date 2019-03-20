@@ -1,17 +1,28 @@
-#include "MyExampleInterface_impl.h"
-#include <iostream>
+#ifndef __MY_EXAMPLE_INTERFACE_IMPL_H__
+#define __MY_EXAMPLE_INTERFACE_IMPL_H__
+
+#include "example.hh"
+#include <vector>
+#include <string>
 
 using namespace std;
 
-char * MyExampleInterface_impl::send_message(const char * message)
+class MyExampleInterface_impl : public POA_ExampleInterface
 {
-	cout << "C++ (omniORB) server: " << message << endl;
-	char * server = CORBA::string_alloc(42);
-	strncpy(server, "Message from C++ (omniORB) server", 42);
-	return server;
-}
+	public:
+	    vector<string> questions;
+		vector<string> answers;
+		short randomIndex;
 
-void MyExampleInterface_impl::createQA(const char * q, const char * a)
-{
-	cout << "Enter Question: " << endl;
-}
+		inline MyExampleInterface_impl(){}
+		virtual void newQuestion(const char * q, const char * a);
+		virtual char * getRandomQuestion();
+		virtual char * answerQuestion(const char * userAnswer);
+
+		virtual void setRandomIndex();
+		virtual void removeQuestion(const short index);
+		virtual char * getQuestion(const short index);
+		virtual short getSize();
+};
+
+#endif // __MY_EXAMPLE_INTERFACE_IMPL_H__
